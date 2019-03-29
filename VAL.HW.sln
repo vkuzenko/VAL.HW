@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HW01", "HW01", "{CB83638F-0247-4C77-93E0-5E68663C4F5E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HW02", "HW02", "{78F17DD5-A537-4509-B415-4356E1606A80}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HW03", "HW03", "{23FC8B03-6BA5-41CF-87EB-6C90D22EB0FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HW04", "HW04", "{410CE2C1-870D-45F1-838A-C56C899D8CF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VAL.HW01.Task02", "VAL.HW01.Task02\VAL.HW01.Task02.csproj", "{D23C191C-4544-4E75-A07D-B195E5FFEA05}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D23C191C-4544-4E75-A07D-B195E5FFEA05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D23C191C-4544-4E75-A07D-B195E5FFEA05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D23C191C-4544-4E75-A07D-B195E5FFEA05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D23C191C-4544-4E75-A07D-B195E5FFEA05}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D23C191C-4544-4E75-A07D-B195E5FFEA05} = {CB83638F-0247-4C77-93E0-5E68663C4F5E}
+	EndGlobalSection
+EndGlobal
