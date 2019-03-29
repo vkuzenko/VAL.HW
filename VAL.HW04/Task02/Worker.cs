@@ -8,20 +8,20 @@ namespace Task02
 {
     class Worker
     {
-        public string Name;
-        public int PartsLevel;
+        public string Name { get; }
+        public int WorkCapacity { get; }
 
-        public Worker(string name, int partslevel)
+        public Worker(string name, int partsLevel)
         {
             this.Name = name;
-            this.PartsLevel = partslevel;
+            this.WorkCapacity = partsLevel;
         }
 
-        public void AddParts(Device Device)
+        public void AddPartsToDevice(Device device)
         {
-            for (int i = 0; i < this.PartsLevel; i++)
+            for (int i = 0; i < this.WorkCapacity; i++)
             {
-                Device.AddPart(this.Name);
+                device.AddPart(this.Name);
             }   
         }
     }

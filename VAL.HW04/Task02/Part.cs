@@ -8,13 +8,13 @@ namespace Task02
 {
     class Part
     {
-        public string Name;
-        public string WorkerName;
+        public string Name { get; }
+        public string AddedByWorker { get; }
 
-        public Part(string name, string workername)
+        public Part(string name, string workerName)
         {
             this.Name = name;
-            this.WorkerName = workername;
+            this.AddedByWorker = workerName;
         }
     }
 

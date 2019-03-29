@@ -28,7 +28,7 @@ namespace Task02
                     {
                         if (!Device.IsCompleted)
                         {
-                            Worker.AddParts(Device);
+                            Worker.AddPartsToDevice(Device);
                         }
                     }
                 }

@@ -8,33 +8,57 @@ namespace Task02
 {
     class Device
     {
-        public string Name;
-        public int PartsQty;
-        public int CurrPartPosition;
-        public bool IsCompleted;
-        public Part[] Parts;
 
-        public Device(string name, int partsqty)
+        private string _Name;
+        public string Name
         {
-            this.Name = name;
-            this.PartsQty = partsqty;
-            this.CurrPartPosition = 0;
-            this.IsCompleted = false;
-            this.Parts = new Part[partsqty];
+            get
+            {
+                return _Name;
+            }
         }
 
-        public void AddPart(string WorkerName)
+        private int _PartsQty;
+        public int PartsQty
+        {
+            get
+            {
+                return _PartsQty;
+            }
+        }
+
+        private bool _IsCompleted;
+        public bool IsCompleted
+        {
+            get
+            {
+                return _IsCompleted;
+            }
+        }
+        
+        private Part[] Parts;
+        private int CurrPartPosition = 0;
+
+        public Device(string name, int partsQty)
+        {
+            this._Name = name;
+            this._PartsQty = partsQty;
+            this._IsCompleted = false;
+            this.Parts = new Part[partsQty];
+        }
+
+        public void AddPart(string workerName)
         {
             if (!IsCompleted && this.Parts[CurrPartPosition] == null)
             {
-                this.Parts[CurrPartPosition] = new Part("P" + CurrPartPosition.ToString(), WorkerName);
+                this.Parts[CurrPartPosition] = new Part("P" + CurrPartPosition.ToString(), workerName);
                 if (CurrPartPosition < this.Parts.Length - 1)
                 {
                     this.CurrPartPosition = CurrPartPosition + 1;
                 }
                 else
                 {
-                    IsCompleted = true;
+                    this._IsCompleted = true;
                 }              
             }
         }
@@ -42,19 +66,18 @@ namespace Task02
         public string GetPartsList()
         {
             string PartsList;
-            PartsList = $"Device:{this.Name}, Parts:{this.PartsQty}\r\n";
+            PartsList = $"Device:{this._Name}, Parts:{this._PartsQty}\r\n";
             foreach (var Part in this.Parts)
             {
                 if (Part != null)
                 {
-                    PartsList = PartsList + $"Part:{Part.Name}, By:{Part.WorkerName}\r\n";
+                    PartsList = PartsList + $"Part:{Part.Name}, By:{Part.AddedByWorker}\r\n";
                 }
                 else
                 {
                     PartsList = PartsList + "Part:-\r\n";
                 }
             }
-            PartsList = PartsList + "\r\n";
             return PartsList;
         }
 
