@@ -1,0 +1,31 @@
+ProductionLine
+	Name
+	Workers[]
+	Devices[]
+
+	AddWorkers()
+	ProduceDevice()
+
+Worker
+	Name
+	PartsLevel
+
+	AddParts()
+
+Device
+	Name
+	PartsQty
+	CurrentPartPosition
+	IsCompleted
+	Parts[]
+
+	AddPart()
+	GetPartsList()
+
+Part
+	Name
+	WorkerName
+	ProductionLineItereation
+	DateTimeAdded
+
+
