@@ -8,9 +8,9 @@ namespace Task01
 {
     public class TVLCD
     {
-        public string Name;
-        public int Power;
-        public string Resolution;
+        private string Name;
+        private int Power;
+        private string Resolution;
 
         public TVLCD(string name, int power, string resolution)
         {
@@ -28,9 +28,9 @@ namespace Task01
 
     public class TVCRT
     {
-        string Name;
-        int Power;
-        int Frequency;
+        private string Name;
+        private int Power;
+        private int Frequency;
 
         public TVCRT(string name, int power, int frequency)
         {

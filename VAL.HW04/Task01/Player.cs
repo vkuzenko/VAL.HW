@@ -8,9 +8,9 @@ namespace Task01
 {
     public class Player
     {
-        public string Name;
-        public int Power;
-        public string[] Formats;
+        private string Name;
+        private int Power;
+        private string[] Formats;
 
         public Player(string name, int power, string[] formats)
         {
@@ -19,14 +19,20 @@ namespace Task01
             this.Formats = formats;
         }
 
-        public string GetDescription()
+        private string GetFormats()
         {
-            string AllFormats = "";
+            string allFormats = "";
             for (int i = 0; i < this.Formats.Length; i++)
             {
-                AllFormats = AllFormats + this.Formats[i] + " ";
+                allFormats = allFormats + this.Formats[i] + " ";
             }
-            return $"Player name:{this.Name}, power:{this.Power}, formats:{AllFormats}";
+            return allFormats;
         }
+
+        public string GetDescription()
+        {
+            return $"Player name:{this.Name}, power:{this.Power}, formats:{this.GetFormats()}";
+        }
+
     }
 }

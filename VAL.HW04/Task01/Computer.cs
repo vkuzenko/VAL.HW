@@ -8,10 +8,10 @@ namespace Task01
 {
     public class ComputerNotebook
     {
-        public string Name;
-        public int Power;
-        public int RAM;
-        public int Weight;
+        private string Name;
+        private int Power;
+        private int RAM;
+        private int Weight;
 
         public ComputerNotebook(string name, int power, int ram, int weight)
         {
@@ -29,10 +29,10 @@ namespace Task01
 
     public class ComputerServer
     {
-        public string Name;
-        public int Power;
-        public int RAM;
-        public int Processors;
+        private string Name;
+        private int Power;
+        private int RAM;
+        private int Processors;
 
         public ComputerServer(string name, int power, int ram, int processors)
         {
