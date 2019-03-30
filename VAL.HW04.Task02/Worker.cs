@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task02
+namespace VAL.HW04.Task02
 {
     class Worker
     {

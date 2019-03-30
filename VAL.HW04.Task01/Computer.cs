@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task01
+namespace VAL.HW04.Task01
 {
     public class ComputerNotebook
     {
