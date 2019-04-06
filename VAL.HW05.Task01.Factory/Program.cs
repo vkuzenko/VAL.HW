@@ -10,7 +10,6 @@ namespace VAL.HW05.Task01.Factory
     {
         static void Main(string[] args)
         {
-            Logger newLogger = new Logger();
             Country newCountry = new Country(Variables.CountryName);
             Craft newCraft = new Craft(Variables.CraftName, newCountry);
             newCraft.StartYear();
