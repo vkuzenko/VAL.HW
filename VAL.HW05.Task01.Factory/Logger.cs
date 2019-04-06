@@ -12,7 +12,7 @@ namespace VAL.HW05.Task01.Factory
             messageNo++;
             message = $"{messageNo.ToString("0000")} Info {DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")} {message}";
             Console.WriteLine(message);
-            File.AppendAllText("log.txt", message + "\r\n");
+            File.AppendAllText(Variables.logFileName, message + "\r\n");
 
         }
 
@@ -21,7 +21,7 @@ namespace VAL.HW05.Task01.Factory
             messageNo++;
             message = $"{messageNo.ToString("0000")} Warning {DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")} {message}";
             Console.WriteLine(message);
-            File.AppendAllText("log.txt", message + "\r\n");
+            File.AppendAllText(Variables.logFileName, message + "\r\n");
         }
     }
 }
