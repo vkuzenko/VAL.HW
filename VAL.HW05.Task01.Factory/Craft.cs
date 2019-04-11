@@ -12,6 +12,7 @@ namespace VAL.HW05.Task01.Factory
         public Country Country { get; private set; }
         public List<Worker> Workers { get; private set; }
         public List<Order> Orders { get; private set; }
+        private Order OpenOrder;
 
         public Craft(string name, Country country)
         {
@@ -42,82 +43,35 @@ namespace VAL.HW05.Task01.Factory
 
         private void StartDay()
         {
-            Order openOrder;
-
-            //foreach (var worker in this.Workers)
-            //{
-            //    do
-            //    {
-            //        openOrder = this.GetOpenOrder();
-            //        Tank notCompletedTank = this.GetOpenTank(openOrder);
-            //        if (notCompletedTank == null)
-            //        {
-            //            Car notCompletedCar = this.GetOpenCar(openOrder);
-            //            if (notCompletedCar != null)
-            //            {
-            //                worker.AddPartsToAgregate(notCompletedCar);
-            //            }
-            //        }
-            //        else
-            //        {
-            //            worker.AddPartsToAgregate(notCompletedTank);
-            //        }
-            //        CheckAndCloseOrder(openOrder);
-            //    } while (openOrder != null);
-
-            //    Country.GenerateNewOrders(Variables.NewOrdersQty);
-            //}
-
             foreach (var worker in this.Workers)
             {
 
-                openOrder = this.GetOpenOrder();
-                if (openOrder == null)
+                OpenOrder = this.GetOpenOrder();
+                if (OpenOrder == null)
                 {
                     Logger.LogWarning("Orders are over!");
                     this.Orders.AddRange(Country.GenerateNewOrders(Variables.NewOrdersQty));
-                    openOrder = this.GetOpenOrder();
+                    OpenOrder = this.GetOpenOrder();
                 }
 
-                Tank notCompletedTank = this.GetOpenTank(openOrder);
+                Tank notCompletedTank = this.GetOpenTank(OpenOrder);
                 if (notCompletedTank == null)
                 {
-                    Car notCompletedCar = this.GetOpenCar(openOrder);
+                    Car notCompletedCar = this.GetOpenCar(OpenOrder);
                     if (notCompletedCar != null)
                     {
                         worker.AddPartsToAgregate(notCompletedCar);
-                        Logger.LogInfo($"Order:{openOrder.OrderNumberShort} Car:{notCompletedCar.IdShort}({notCompletedCar.PartsQty.ToString("00")}/{notCompletedCar.PartsAdded.ToString("00")}) Worker:{worker.IdShort} Parts:{worker.WorkCapacity.ToString("00")}");
+                        Logger.LogInfo($"Order:{OpenOrder.OrderNumberShort} Car:{notCompletedCar.IdShort}({notCompletedCar.PartsQty.ToString("00")}/{notCompletedCar.PartsAdded.ToString("00")}) Worker:{worker.IdShort} Parts:{worker.WorkCapacity.ToString("00")}");
                     }
                 }
                 else
                 {
                     worker.AddPartsToAgregate(notCompletedTank);
-                    Logger.LogInfo($"Order:{openOrder.OrderNumberShort} Tnk:{notCompletedTank.IdShort}({notCompletedTank.PartsQty.ToString("00")}/{notCompletedTank.PartsAdded.ToString("00")}) Worker:{worker.IdShort} Parts:{worker.WorkCapacity.ToString("00")}");
+                    Logger.LogInfo($"Order:{OpenOrder.OrderNumberShort} Tnk:{notCompletedTank.IdShort}({notCompletedTank.PartsQty.ToString("00")}/{notCompletedTank.PartsAdded.ToString("00")}) Worker:{worker.IdShort} Parts:{worker.WorkCapacity.ToString("00")}");
                 }
-                CheckAndCloseOrder(openOrder);
+                OpenOrder.CheckAndClose();
             }
 
-        }
-
-    internal void CheckAndCloseOrder(Order order)
-        {
-            foreach (var car in order.Cars)
-            {
-                if (!car.IsCompleted)
-                {
-                    return;
-                }
-            }
-
-            foreach (var tank in order.Tanks)
-            {
-                if (!tank.IsCompleted)
-                {
-                    return;
-                }
-            }
-
-            order.IsCompleted = true;
         }
 
         private Car GetOpenCar(Order order)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VAL.HW05.Task01.Factory
 {
-    public class Variables
+    public static class Variables
     {
         public static string CountryName = "UA";
         public static string CraftName = "Uralmash";
