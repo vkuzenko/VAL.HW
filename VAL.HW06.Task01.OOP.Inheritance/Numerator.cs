@@ -12,7 +12,7 @@ namespace VAL.HW06.Task01
 
         private int Id;
 
-        protected Numerator()
+        private Numerator()
         {
             Random random = new Random();
             this.Id = random.Next(0,100);
@@ -29,8 +29,7 @@ namespace VAL.HW06.Task01
 
         public int GetId()
         {
-            Id++;
-            return Id;
+            return ++Id;
         }
 
     }

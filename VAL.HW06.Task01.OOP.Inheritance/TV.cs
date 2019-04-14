@@ -9,7 +9,7 @@ namespace VAL.HW06.Task01
 
     public sealed class TVLCD : ElectronicDevice
     {
-        public string Resolution;
+        public string Resolution { get; private set; }
 
         public TVLCD(string name, int power, string resolution) : base(name, power)
         {

@@ -10,8 +10,6 @@ namespace VAL.HW06.Task01
     {
         static void Main(string[] args)
         {
-            int power = 0;
-            int ram = 0;
 
             List<ElectronicDevice> electronicDevices = new List<ElectronicDevice>
             {
@@ -27,11 +25,14 @@ namespace VAL.HW06.Task01
                 new TVCRT("KVN", 32, 20)
             };
 
+            int power = 0;
+            int ram = 0;
+
             foreach (var device in electronicDevices)
             {
                 Console.WriteLine(device.ToString());
 
-                power = power + device.Power;
+                power += device.Power;
 
                 Computer castedComputer = device as Computer;
                 if (castedComputer != null)
