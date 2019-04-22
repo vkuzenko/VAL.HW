@@ -6,76 +6,78 @@ using System.Threading.Tasks;
 
 namespace VAL.HW07.Task01.Logger
 {
-    public enum LogLevels
-    {
-        Debug = 1,
-        Info = 2,
-        Warn = 3,
-        Error = 4,
-        Fatal = 5
-    }
-
     class Program
     {
         static void Main(string[] args)
         {
-                Logger logger = new Logger();
-                logger.LogLevel = LogLevels.Info;
-                //logger.LogStorages.Add(new StorageConsole());
-                logger.LogStorages.Add(new StorageFile("logger.log", 1000));
+            Logger logger = new Logger();
+            logger.LogLevel = Logger.LogLevels.Info;
+            //logger.LogStorages.Add(new StorageConsole());
+            logger.LogStorages.Add(new StorageFile("logger.log"));
+            logger.Info("Application started");
+            LandArea landArea = new LandArea();
 
-                logger.Info("Application started");
-
-            try
+            string s;
+            List<LandArea.Point> points = new List<LandArea.Point>();
+            do
             {
-                string s;
                 int x;
                 int y;
-                bool stopEntry = false;
-                List<Point> points = new List<Point>();
+                string msg;
+                bool isNumberEntered;
 
                 do
                 {
+                    isNumberEntered = false;
                     Console.Write("Enter X: ");
                     s = Console.ReadLine();
                     logger.Debug($"Enter X: {s}");
-                    x = Convert.ToInt16(s);
+                    if (int.TryParse(s, out x))
+                    {
+                        isNumberEntered = true;
+                    }
+                    else
+                    {
+                        msg = $"X = {s} is not a number, please, try again!";
+                        logger.Error(msg);
+                        Console.WriteLine(msg);
+                    }
+                } while (!isNumberEntered);
 
+                do
+                {
+                    isNumberEntered = false;
                     Console.Write("Enter Y: ");
                     s = Console.ReadLine();
                     logger.Debug($"Enter Y: {s}");
-                    y = Convert.ToInt16(s);
-
-                    points.Add(new Point(x, y));
-
-                    Console.Write("Add another point? (Y/N): ");
-                    s = Console.ReadLine();
-                    logger.Debug($"Add another point? (Y/N): {s}");
-                    if (s.ToUpper() == "N")
+                    if (int.TryParse(s, out y))
                     {
-                        stopEntry = true;
+                        isNumberEntered = true;
                     }
+                    else
+                    {
+                        msg = $"Y = {s} is not a number, please, try again!";
+                        logger.Error(msg);
+                        Console.WriteLine(msg);
+                    }
+                } while (!isNumberEntered);
 
-                    Console.WriteLine();
-                    logger.Info($"Point: {x}, {y}");
+                landArea.Points.Add(new LandArea.Point(x, y));
 
-                } while (!stopEntry);
+                Console.Write("Add another point? (Y/N): ");
+                s = Console.ReadLine();
+                logger.Debug($"Add another point? (Y/N): {s}");
 
-                LandArea landArea = new LandArea(points);
-                Console.WriteLine($"Your land area size is: {landArea.GetLandArea()}m2");
-                logger.Info($"Your land area size is: {landArea.GetLandArea()}m2");
+                Console.WriteLine();
+                logger.Info($"Point: {x}, {y}");
 
-                Console.Write("\r\nPress any key to close...");
-                Console.ReadLine();
+            } while (s.ToUpper() != "N");
 
-            }
-            catch(Exception ex)
-            {
-                logger.Error(ex.Message);
-                Console.WriteLine($"Oops, we've got an error: {ex.Message}! \n\rPress any key to close...");
-                Console.Read();
-            }
+            Console.WriteLine($"Your land area size is: {landArea.GetLandArea()}m2");
+            logger.Info($"Your land area size is: {landArea.GetLandArea()}m2");
 
+            Console.Write("\r\nPress any key to close...");
+            Console.ReadLine();
         }
     }
 }

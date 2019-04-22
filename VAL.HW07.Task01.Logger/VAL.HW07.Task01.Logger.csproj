@@ -47,7 +47,6 @@
     <Compile Include="IStorage.cs" />
     <Compile Include="LandArea.cs" />
     <Compile Include="Logger.cs" />
-    <Compile Include="Point.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StorageConsole.cs" />

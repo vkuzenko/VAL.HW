@@ -8,23 +8,36 @@ namespace VAL.HW07.Task01.Logger
 {
     class LandArea
     {
-        List<Point> Points { get; set; }
 
-        public LandArea(List<Point> points)
+        public struct Point
         {
-            Points = points;
+            public int X { get; set; }
+            public int Y { get; set; }
+
+            public Point(int x, int y)
+            {
+                X = x;
+                Y = y;
+            }
         }
 
-        private long CalculateArea(List<Point> points, bool isAltAppr)
+        public List<Point> Points { get; set; }
+
+        public LandArea()
+        {
+            Points = new List<Point>();
+        } 
+
+        private long CalculateArea(List<Point> points)
         {
             long landArea = 0;
             for (int i = 0; i < points.Count; i++)
             {
                 int nextIndex = (i == points.Count - 1) ? 0 : i + 1;
                 int prevIndex = (i == 0) ? points.Count - 1 : i - 1;
-                long par1 = isAltAppr ? points[i].X : points[i].Y;
-                long par2_1 = isAltAppr ? points[nextIndex].Y : points[prevIndex].X;
-                long par2_2 = isAltAppr ? points[prevIndex].Y : points[nextIndex].X;
+                long par1 = points[i].X;
+                long par2_1 = points[nextIndex].Y;
+                long par2_2 = points[prevIndex].Y;
                 long tempLandArea = landArea;
                 landArea += par1 * (par2_1 - par2_2);
             }
@@ -34,7 +47,7 @@ namespace VAL.HW07.Task01.Logger
 
         public long GetLandArea()
         {
-            return CalculateArea(this.Points, false);
+            return CalculateArea(Points);
         }
     }
 }

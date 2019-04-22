@@ -10,30 +10,15 @@ namespace VAL.HW07.Task01.Logger
 {
     class StorageFile : IStorage
     {
-        private string FileName;
-        static Timer LogTimer;
-        private string Message;
+        private string FileName { get; }
 
         public void Write(string message)
         {
-            Message = Message + message + "\r\n";
+            File.AppendAllText(this.FileName, message + "\r\n");
         }
-        public StorageFile(string fileName, int saveToFileInterval)
+        public StorageFile(string fileName)
         {
             FileName = fileName;
-            LogTimer = new Timer(new TimerCallback(WriteToFile), null, 0, saveToFileInterval);
-        }
-
-        private void WriteToFile(object state)
-        {
-            string message;
-            if (string.IsNullOrEmpty(Message))
-            {
-                return;
-            }
-            message = Message;
-            Message = "";
-            File.AppendAllText(this.FileName, message);
         }
     }
 }
